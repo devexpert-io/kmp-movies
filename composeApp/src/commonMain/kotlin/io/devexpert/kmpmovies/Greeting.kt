@@ -1,3 +1,5 @@
+package io.devexpert.kmpmovies
+
 class Greeting {
     private val platform = getPlatform()
 

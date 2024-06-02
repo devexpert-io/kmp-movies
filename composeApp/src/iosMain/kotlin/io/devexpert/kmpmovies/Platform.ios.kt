@@ -1,3 +1,5 @@
+package io.devexpert.kmpmovies
+
 import platform.UIKit.UIDevice
 
 class IOSPlatform: Platform {

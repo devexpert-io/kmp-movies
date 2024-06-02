@@ -1,3 +1,5 @@
+package io.devexpert.kmpmovies
+
 import android.os.Build
 
 class AndroidPlatform : Platform {
