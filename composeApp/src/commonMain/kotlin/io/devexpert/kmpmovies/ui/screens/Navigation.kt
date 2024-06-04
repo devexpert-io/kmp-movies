@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import io.devexpert.kmpmovies.movies
+import io.devexpert.kmpmovies.data.movies
 import io.devexpert.kmpmovies.ui.screens.home.DetailScreen
 import io.devexpert.kmpmovies.ui.screens.home.HomeScreen
 
