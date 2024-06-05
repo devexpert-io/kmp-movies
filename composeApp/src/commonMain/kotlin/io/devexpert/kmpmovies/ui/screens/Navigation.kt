@@ -15,7 +15,9 @@ import io.devexpert.kmpmovies.ui.screens.home.DetailScreen
 import io.devexpert.kmpmovies.ui.screens.home.HomeScreen
 import io.devexpert.kmpmovies.ui.screens.home.HomeViewModel
 import io.ktor.client.HttpClient
+import io.ktor.client.plugins.DefaultRequest
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.http.URLProtocol
 import io.ktor.serialization.kotlinx.json.json
 import kmpmovies.composeapp.generated.resources.Res
 import kmpmovies.composeapp.generated.resources.api_key
@@ -27,6 +29,7 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
+            val apiKey = stringResource(Res.string.api_key)
             val client = remember {
                 HttpClient {
                     install(ContentNegotiation) {
@@ -34,11 +37,17 @@ fun Navigation() {
                             ignoreUnknownKeys = true
                         })
                     }
+                    install(DefaultRequest) {
+                        url {
+                            protocol = URLProtocol.HTTPS
+                            host = "api.themoviedb.org/3"
+                            parameters.append("api_key", apiKey)
+                        }
+                    }
                 }
             }
-            val apiKey = stringResource(Res.string.api_key)
             val homeViewModel = viewModel {
-                HomeViewModel(MoviesRepository(MoviesService(apiKey, client)))
+                HomeViewModel(MoviesRepository(MoviesService(client)))
             }
 
             HomeScreen(
