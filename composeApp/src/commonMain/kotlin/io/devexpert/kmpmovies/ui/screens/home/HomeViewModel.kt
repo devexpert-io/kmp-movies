@@ -6,11 +6,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.devexpert.kmpmovies.data.Movie
-import io.devexpert.kmpmovies.data.MoviesService
+import io.devexpert.kmpmovies.data.MoviesRepository
 import io.devexpert.kmpmovies.data.RemoteMovie
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val moviesService: MoviesService) : ViewModel() {
+class HomeViewModel(private val moviesRepository: MoviesRepository) : ViewModel() {
 
     var state by mutableStateOf(UiState())
         private set
@@ -20,7 +20,7 @@ class HomeViewModel(private val moviesService: MoviesService) : ViewModel() {
             state = UiState(loading = true)
             state = UiState(
                 loading = false,
-                movies = moviesService.fetchPopularMovies().results.map { it.toDomainMovie() }
+                movies = moviesRepository.fetchPopularMovies().results.map { it.toDomainMovie() }
             )
         }
     }

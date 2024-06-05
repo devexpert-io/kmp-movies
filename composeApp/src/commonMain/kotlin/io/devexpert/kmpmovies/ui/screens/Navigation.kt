@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import io.devexpert.kmpmovies.data.MoviesRepository
 import io.devexpert.kmpmovies.data.MoviesService
 import io.devexpert.kmpmovies.data.movies
 import io.devexpert.kmpmovies.ui.screens.home.DetailScreen
@@ -37,7 +38,7 @@ fun Navigation() {
             }
             val apiKey = stringResource(Res.string.api_key)
             val homeViewModel = viewModel {
-                HomeViewModel(MoviesService(apiKey, client))
+                HomeViewModel(MoviesRepository(MoviesService(apiKey, client)))
             }
 
             HomeScreen(
