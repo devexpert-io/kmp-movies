@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.androidxRoom)
 }
 
 kotlin {
@@ -26,6 +28,10 @@ kotlin {
             baseName = "ComposeApp"
             isStatic = true
         }
+    }
+
+    sourceSets.commonMain {
+        kotlin.srcDir("build/generated/ksp/metadata")
     }
     
     sourceSets {
@@ -49,6 +55,8 @@ kotlin {
             implementation(libs.ktor.serialization.json)
             implementation(libs.androidx.navigation.compose)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.androidx.sqlite.bundled)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -96,3 +104,16 @@ android {
     }
 }
 
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+    add("kspCommonMainMetadata", libs.androidx.room.compiler)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}

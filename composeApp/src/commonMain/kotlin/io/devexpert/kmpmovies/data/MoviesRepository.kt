@@ -1,14 +1,24 @@
 package io.devexpert.kmpmovies.data
 
-class MoviesRepository(private val moviesService: MoviesService) {
+import io.devexpert.kmpmovies.data.database.MoviesDao
+import kotlinx.coroutines.flow.onEach
 
-    suspend fun fetchPopularMovies(): List<Movie> {
-        return moviesService.fetchPopularMovies().results.map { it.toDomainMovie() }
+class MoviesRepository(private val moviesService: MoviesService, private val moviesDao: MoviesDao) {
+
+    val movies = moviesDao.fetchPopularMovies().onEach { movies ->
+        if (movies.isEmpty()) {
+            val remoteMovies = moviesService.fetchPopularMovies().results.map { it.toDomainMovie() }
+            moviesDao.save(remoteMovies)
+        }
     }
 
-    suspend fun fetchMovieById(id: Int): Movie {
-        return moviesService.fetchMovieById(id).toDomainMovie()
+    fun fetchMovieById(id: Int) = moviesDao.findMovieById(id).onEach { movie ->
+        if (movie == null) {
+            val remoteMovie = moviesService.fetchMovieById(id).toDomainMovie()
+            moviesDao.save(listOf(remoteMovie))
+        }
     }
+
 }
 
 private fun RemoteMovie.toDomainMovie() = Movie(

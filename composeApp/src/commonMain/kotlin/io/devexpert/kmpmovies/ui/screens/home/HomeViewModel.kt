@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.devexpert.kmpmovies.data.Movie
 import io.devexpert.kmpmovies.data.MoviesRepository
-import io.devexpert.kmpmovies.data.RemoteMovie
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val moviesRepository: MoviesRepository) : ViewModel() {
@@ -18,10 +17,11 @@ class HomeViewModel(private val moviesRepository: MoviesRepository) : ViewModel(
     init {
         viewModelScope.launch {
             state = UiState(loading = true)
-            state = UiState(
-                loading = false,
-                movies = moviesRepository.fetchPopularMovies()
-            )
+            moviesRepository.movies.collect {
+                if (it.isNotEmpty()) {
+                    state = UiState(loading = false, movies = it)
+                }
+            }
         }
     }
 
