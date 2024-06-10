@@ -1,5 +1,7 @@
 package io.devexpert.kmpmovies.data
 
+const val DEFAULT_REGION = "US"
+
 interface RegionDataSource {
     suspend fun fetchRegion(): String
 }
