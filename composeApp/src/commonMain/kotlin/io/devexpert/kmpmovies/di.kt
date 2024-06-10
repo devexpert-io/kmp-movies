@@ -3,7 +3,8 @@ package io.devexpert.kmpmovies
 import androidx.room.RoomDatabase
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import io.devexpert.kmpmovies.data.MoviesRepository
-import io.devexpert.kmpmovies.data.MoviesService
+import io.devexpert.kmpmovies.data.RegionRepository
+import io.devexpert.kmpmovies.data.remote.MoviesService
 import io.devexpert.kmpmovies.data.database.MoviesDao
 import io.devexpert.kmpmovies.data.database.MoviesDatabase
 import io.devexpert.kmpmovies.ui.screens.detail.DetailViewModel
@@ -49,6 +50,7 @@ val dataModule = module {
     }
 
     factoryOf(::MoviesRepository)
+    factoryOf(::RegionRepository)
     factoryOf(::MoviesService)
 }
 
