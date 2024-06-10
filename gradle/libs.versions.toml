@@ -21,6 +21,8 @@ androidx-room = "2.7.0-alpha03"
 androidx-sqliteBundled = "2.5.0-alpha03"
 ksp = "2.0.0-1.0.21"
 buildconfig = "5.3.5"
+koin = "3.6.0-Beta4"
+koinCompose = "1.2.0-Beta4"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -45,6 +47,11 @@ androidx-lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecyc
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
 androidx-sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.ref = "androidx-sqliteBundled" }
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
+koin-core = { group = "io.insert-koin", name = "koin-core" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose" }
+koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = "koinCompose"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
