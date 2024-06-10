@@ -20,6 +20,7 @@ androidx-lifecycle = "2.8.0"
 androidx-room = "2.7.0-alpha03"
 androidx-sqliteBundled = "2.5.0-alpha03"
 ksp = "2.0.0-1.0.21"
+buildconfig = "5.3.5"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -54,3 +55,4 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 androidxRoom = { id = "androidx.room", version.ref = "androidx-room" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+gradleBuildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }
