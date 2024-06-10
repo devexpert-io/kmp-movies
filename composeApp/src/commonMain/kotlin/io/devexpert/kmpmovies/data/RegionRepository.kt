@@ -1,8 +1,12 @@
 package io.devexpert.kmpmovies.data
 
-class RegionRepository {
+interface RegionDataSource {
+    suspend fun fetchRegion(): String
+}
+
+class RegionRepository(private val regionDataSource: RegionDataSource) {
 
     suspend fun fetchRegion(): String {
-        return "US"
+        return regionDataSource.fetchRegion()
     }
 }
