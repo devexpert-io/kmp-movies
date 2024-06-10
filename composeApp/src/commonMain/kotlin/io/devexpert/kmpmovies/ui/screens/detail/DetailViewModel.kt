@@ -28,4 +28,12 @@ class DetailViewModel(private val id: Int, private val repository: MoviesReposit
             }
         }
     }
+
+    fun onFavoriteClick() {
+        state.movie?.let {
+            viewModelScope.launch {
+                repository.toggleFavorite(it)
+            }
+        }
+    }
 }

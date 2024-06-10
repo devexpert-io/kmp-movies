@@ -19,6 +19,10 @@ class MoviesRepository(private val moviesService: MoviesService, private val mov
         }
     }
 
+    suspend fun toggleFavorite(movie: Movie) {
+        moviesDao.save(listOf(movie.copy(isFavorite = !movie.isFavorite)))
+    }
+
 }
 
 private fun RemoteMovie.toDomainMovie() = Movie(
@@ -31,5 +35,6 @@ private fun RemoteMovie.toDomainMovie() = Movie(
     originalLanguage,
     originalTitle,
     popularity,
-    voteAverage
+    voteAverage,
+    false
 )
