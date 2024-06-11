@@ -25,6 +25,7 @@ koin = "3.6.0-Beta4"
 koinCompose = "1.2.0-Beta4"
 moko-permissions = "0.18.0"
 playServicesLocation = "21.3.0"
+skie = "0.8.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -45,6 +46,7 @@ ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.r
 ktor-client-contentnegotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 androidx-navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
@@ -67,3 +69,4 @@ kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 androidxRoom = { id = "androidx.room", version.ref = "androidx-room" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 gradleBuildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }
+skie = { id = "co.touchlab.skie", version.ref = "skie" }

@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.androidxRoom)
     alias(libs.plugins.gradleBuildConfig)
+    alias(libs.plugins.skie)
 }
 
 kotlin {
@@ -27,6 +28,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
+            export(libs.androidx.lifecycle.viewmodel)
             baseName = "ComposeApp"
             isStatic = true
         }
@@ -58,6 +60,7 @@ kotlin {
             implementation(libs.ktor.client.contentnegotiation)
             implementation(libs.ktor.serialization.json)
             implementation(libs.androidx.navigation.compose)
+            api(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
             implementation(libs.androidx.room.runtime)
             implementation(libs.androidx.sqlite.bundled)
@@ -135,4 +138,10 @@ buildConfig {
     val apiKey = properties.getProperty("API_KEY")
 
     buildConfigField("API_KEY", apiKey)
+}
+
+skie {
+    features {
+        enableSwiftUIObservingPreview = true
+    }
 }
