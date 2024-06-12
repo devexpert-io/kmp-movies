@@ -20,7 +20,10 @@ struct DetailScreen: View {
                 }
                 
                 if let movieDetail = state.movie {
-                    MovieDetail(movie: movieDetail)
+                    MovieDetail(
+                        movie: movieDetail,
+                        onFavoriteClick: { viewModelStoreOwner.instance.onFavoriteClick() }
+                    )
                 }
             }
         }
@@ -29,6 +32,7 @@ struct DetailScreen: View {
 
 struct MovieDetail: View {
     var movie: Movie
+    var onFavoriteClick: () -> Void
     
     var body: some View {
         ScrollView {
@@ -67,5 +71,8 @@ struct MovieDetail: View {
             }
         }
         .navigationTitle(movie.title)
+        .navigationBarItems(trailing: Button(action: onFavoriteClick) {
+            Image(systemName: movie.isFavorite ? "heart.fill" : "heart")
+        })
     }
 }
